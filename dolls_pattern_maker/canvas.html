@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>
+            人形用型紙作成プログラム
+        </title>
+        <link rel="stylesheet" href="css/site.css">
+        <script src="js/lib.js"></script>
+    </head>
+    <body>
+<canvas id="myCanvas" width="600" height="600"></canvas>
+<script>
+var canvas = document.getElementById('myCanvas');
+var context = canvas.getContext('2d');
+context.strokeStyle = 'black';
+context.fillStyle = 'lightGray';
+
+// キャンバスエリア
+context.strokeRect(0,0, canvas.width, canvas.height);
+
+// 
+// canvas.toDataURL();画像に変換
+//context.font = '40px \'Helvetica\'';
+//var metrics = context.measureText('Hello World');
+//context.fillText('Hello World', (300 - metrics.width) / 2, 150);
+//context.strokeText('Hello World',(300-metrics.width) / 2, 150);
+
+//context.beginPath();
+//context.moveTo(20,160);
+//context.quadraticCurveTo(150, 220, 280, 160);
+//context.stroke();
+// 四角を描く
+var linelength = convmm2px(40);
+context.strokeRect(25,25, 25+ linelength, 25 + linelength);
+</script>
+    </body>
+</html>
