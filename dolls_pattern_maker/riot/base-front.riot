@@ -1,24 +1,56 @@
 ﻿<base-front>
-    <div>背丈：{ props.BackCenterLength }　胴囲：{ props.ChestGirth }cm</div>
-    <svg width="{state.w}cm" height="{state.h}cm" viewBox="0 0 1200 1000"
+    <table class="table">
+        <tr>
+            <th>背丈</th>
+            <td>{ Measurements.BackCenterLength }</td>
+        </tr>
+        <tr>
+            <th>胴囲</th>
+            <td>{ Measurements.ChestGirth }</td>
+        </tr>
+    </table>
+    <br />
+    <svg width="12cm" height="10cm" viewBox="0 0 1200 1000"
          xmlns="http://www.w3.org/2000/svg" version="1.1">
         <rect x="1" y="1" width="1198" height="998"
               fill="none" stroke="black" stroke-width="3" />
-        <path d="M50,100 l0,650 l430,0 l0,-300 q-160,-10 -80,-370 l-200,-60 q-20,80 -150,80" fill="none" stroke="black" stroke-width="3" />
+        <path d="M{d.p1x},{d.p1y} l{d.p2x},{d.p2y} l{d.p3x},{d.p3y} l{d.p4x},-{d.p4y}
+              q-{d.p5x},-{d.p5y} -{d.p6x},-{d.p6y} l-{d.p7x},-{d.p7y}
+              q-{d.p8x},{d.p8y} -{d.p9x},{d.p9y}"
+              fill="none" stroke="black" stroke-width="3" />
     </svg>
     <script>
         export default {
-            onBeforeMount(props, state) {
-                this.state = {
-                    w: 12,
-                    h: 10,
+            onBeforeMount(props) {
+                this.Measurements = {
                     ChestGirth: props.ChestGirth,
-                    BackCenterLength: props.BackCenterLength
+                    BackCenterLength: props.BackCenterLength,
+                }
+                this.d = {
+                    p1x: 50,    // 左余白
+                    p1y: 100,   // 上余白＋後襟ぐり
+                    p2x: 0,
+                    p2y: 650,   // 背丈
+                    p3x: 430,   // 1/4ウエスト
+                    p3y: 0,
+                    p4x: 0,
+                    p4y: 300,
+                    p5x: 160,   // アームホール制御点 x
+                    p5y: 10,    // アームホール制御点 y
+                    p6x: 80,    //
+                    p6y: 370,
+                    p7x: 200,
+                    p7y: 60,
+                    p8x: 20,
+                    p8y: 80,
+                    p9x: 150,   // 始点/終点 x ネックラインまでの幅
+                    p9y: 80     // 始点/終点 y ネックラインの深さ
                 }
             }
         }
-        function convUnit(mm) {
 
+        function convUnit(mm) {
+            return mm * 10;
         }
     </script>
 </base-front>
