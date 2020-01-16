@@ -20,6 +20,8 @@
               fill="none" stroke="black" stroke-width="3" />
     </svg>
     <script>
+        var margin = 50;
+        var necklineDepth = 80;
         export default {
             onBeforeMount(props) {
                 this.Measurements = {
@@ -27,30 +29,30 @@
                     BackCenterLength: props.BackCenterLength,
                 }
                 this.d = {
-                    p1x: 50,    // 左余白
-                    p1y: 100,   // 上余白＋後襟ぐり
+                    p1x: margin,    // 左余白
+                    p1y: margin + necklineDepth,   // 上余白＋後襟ぐり
                     p2x: 0,
-                    p2y: 650,   // 背丈
-                    p3x: 430,   // 1/4ウエスト
+                    p2y: convUnit(props.BackCenterLength),   // 背丈
+                    p3x: convUnit(props.ChestGirth/4 + 0.4),   // 1/4ウエスト+緩み
                     p3y: 0,
                     p4x: 0,
-                    p4y: 300,
+                    p4y: convUnit(props.BackCenterLength - 3.5),   // 袖下
                     p5x: 160,   // アームホール制御点 x
                     p5y: 10,    // アームホール制御点 y
-                    p6x: 80,    //
-                    p6y: 370,
-                    p7x: 200,
+                    p6x: 80,    // アームホール深さ
+                    p6y: 370,   // アームホール高さ
+                    p7x: 200,   // 肩側ネックポイント(SNP)
                     p7y: 60,
-                    p8x: 20,
+                    p8x: 20,    // 制御点
                     p8y: 80,
                     p9x: 150,   // 始点/終点 x ネックラインまでの幅
-                    p9y: 80     // 始点/終点 y ネックラインの深さ
+                    p9y: necklineDepth     // 始点/終点 y ネックラインの深さ
                 }
             }
         }
 
         function convUnit(mm) {
-            return mm * 10;
+            return mm * 100;
         }
     </script>
 </base-front>
